@@ -1,3 +1,4 @@
+![Airbnb clone](https://github.com/rodgersxy/AirBnB_clone/assets/122968859/6d23824a-7404-4b90-b332-819862f93198)
 0x00. AirBnB clone - The console
 
 Background Context

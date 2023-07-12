@@ -3,9 +3,6 @@
 '''Module for base_model tests'''
 
 import unittest
-from datetime import datetime
-import uuid 
-import models
 from models.base_model import BaseModel
 
 

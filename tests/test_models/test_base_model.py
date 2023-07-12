@@ -30,8 +30,10 @@ class TestBaseModel(unittest.TestCase):
         '''Check if attribute is set correctly'''
         self.assertEqual(instance.name, 'John')
         self.assertEqual(instance.age, 35)
-        self.assertEqual(instance.created_at, datetime.fromisoformat('2023-01-01T00:00:00'))
-        self.assertEqual(instance.updated_at, datetime.fromisoformat('2023-01-02T00:00:00'))
+        self.assertEqual(
+            instance.created_at, datetime.fromisoformat('2023-01-01T00:00:00'))
+        self.assertEqual(
+            instance.updated_at, datetime.fromisoformat('2023-01-02T00:00:00'))
 
     def test_init_without_attributes(self):
         instance = BaseModel()
@@ -43,7 +45,8 @@ class TestBaseModel(unittest.TestCase):
         self.assertTrue(hasattr(models.storage, 'new'))
 
     def test_str_representation(self):
-        expected_str = "[BaseModel] ({}) {}".format(self.instance.id, self.instance.__dict__)
+        expected_str = "[BaseModel] ({}) {}".format(
+            self.instance.id, self.instance.__dict__)
         self.assertEqual(str(self.instance), expected_str)
 
     def test_save_method(self):

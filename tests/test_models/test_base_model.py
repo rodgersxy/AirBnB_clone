@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-'''Module for base_model tests'''
+'''Module for all base_model tests cases'''
 
 import unittest
 from models.base_model import BaseModel
@@ -8,7 +8,7 @@ from models.base_model import BaseModel
 
 class TestBaseModel(unittest.TestCase):
     '''Test Basemodel class'''
-    def setup(self):
+    def setUp(self):
         '''Sets up test methods'''
         pass
 

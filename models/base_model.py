@@ -37,32 +37,32 @@ class BaseModel:
     def __str__(self):
         """
         Returns a string representation of the BaseModel instance.
-	Returns:
-	    A string representation of the BaseModel instance in the
-	    format:
-	    [<class name>] (<self.id>) <self.__dict__>
-	"""
+        Returns:
+            A string representation of the BaseModel instance in the
+            format:
+            [<class name>] (<self.id>) <self.__dict__>
+        """
         return '[{}] ({}) {}'\
             .format(self.__class__.__name__, self.id, self.__dict__)
-    
+
     def save(self):
         """
-	updates the public instance attribute
-	'updated_at' with the current datetime
-	"""
+        updates the public instance attribute
+        'updated_at' with the current datetime
+        """
         self.updated_at = datetime.utcnow()
 
     def to_dict(self):
         """
-	Returns a dictionary representation of the BaseModel instance.
-	Return-
-	A dictionary containing all keys and values of the instance's
-	__dict__ attribute.
-	The dictionary will also include the '__class__' key with the
-	class name of the object.
-	The 'created_at' and 'updated_at' attributes are converted to
-	string objects in ISO format.
-	"""
+        Returns a dictionary representation of the BaseModel instance.
+        Return-:
+        A dictionary containing all keys and values of the instance's
+        __dict__ attribute.
+        The dictionary will also include the '__class__' key with the
+        class name of the object.
+        The 'created_at' and 'updated_at' attributes are converted to
+        string objects in ISO format.
+        """
 
         new_dict = self.__dict__.copy()
         new_dict['__class__'] = self.__class__.__name__

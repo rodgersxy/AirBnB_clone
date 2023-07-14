@@ -1,18 +1,43 @@
 #!/usr/bin/python3
 
 """
-Module for Coand line Interpreter
+Module for Command line Interpreter
 """
 
 import cmd
 import json
 from models.base_model import BaseModel
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
+from models.user import User
+from models import storage
 
 
 class HBNBCommand(cmd.Cmd):
     """Class for command line interpreter"""
 
     prompt = "(hbnb) "
+
+    classes = {
+            "BaseModel": BaseModel,
+            "State": State,
+            "City": City,
+            "Amenity": Amenity,
+            "Place": Place,
+            "Review": Review
+    }
+
+    attr_types = {
+            "number_rooms": int,
+            "number_bathrooms": int,
+            "max_guest": int,
+            "price_by_night": int,
+            "latitude": float,
+            "longitude": float
+    }
 
     def do_quit(self, arg):
         """Quit command to exit program"""
@@ -39,6 +64,42 @@ class HBNBCommand(cmd.Cmd):
         except NameError:
             print("** class doesn't exist **")
 
+    def update_dict(self, classname, uid, s_dict_):
+        """
+        Method for updated() with a dictionary
+        """
+        s = s_dict.replace("'", "'")
+        d = json.loads(s)
+
+        if not classname:
+            print("** class name missing **")
+            return
+
+        storage = storage_instance()
+
+        if classmate not in storage.classes():
+            print("** class doesn't exist **")
+            return
+
+        if uid is None:
+            print("** instance id is missing **")
+            return
+
+        key = f"{classname}.{uid}"
+        if key not in storage.all():
+            print("** no instance found **")
+            return
+
+        attributes = storage.attributes()[classname]
+        instance = storage.all()[key]
+
+        for attribute, value in d.items():
+            if attribute in attributes:
+                value = attributes[attribute](value)
+            setattr(instance, attribute, value)
+
+        instance.save()
+
     def do_show(self, arg):
         """Print the string representation of an instance"""
         if not arg:
@@ -60,7 +121,7 @@ class HBNBCommand(cmd.Cmd):
             else:
                 print("** class doesn't exist **")
 
-    def do_destory(self, arg):
+    def do_destroy(self, arg):
         """
         Delete an instance based on the class name and id
         """
@@ -71,7 +132,7 @@ class HBNBCommand(cmd.Cmd):
         try:
             class_name = arg_list[0]
             instance_id = arg_list[1]
-            obj_key = class_name + '.' + instance_id
+            obj_key = f"{class_name}.{instance_id}"
             obj_dict = storage.all()
             if obj_key in obj_dict:
                 del obj_dict[obj_key]
@@ -86,7 +147,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_all(self, arg):
         """
-        Print all string representations of instances
+        Prints all string representations of instances
         """
         arg_list = arg.split()
         obj_dict = storage.all()
@@ -96,7 +157,7 @@ class HBNBCommand(cmd.Cmd):
         else:
             try:
                 class_name = arg_list[0]
-                if class_name not in storage.classes():
+                if class_name not in storage.classes:
                     print("** class doesn't exist **")
                     return
                 obj_list = [
@@ -146,7 +207,8 @@ class HBNBCommand(cmd.Cmd):
                 return
             attribute_name = arg_list[2]
             attribute_value = arg_list[3]
-            if attribute_name == "id" or attribute_name == "created_at" or attribute_name == "updated_at":
+            if attribute_name == "id" or attribute_name == "created_at"\
+            or attribute_name == "updated_at":
                 return
             instance = obj_dict[obj_key]
             setattr(instance, attribute_name, attribute_value)
@@ -156,7 +218,7 @@ class HBNBCommand(cmd.Cmd):
                 print("** instance id missing **")
             else:
                 print("** class does not exist **")
-    
+
     def help_show(self):
         """
         Help message for the show command
@@ -202,7 +264,6 @@ class HBNBCommand(cmd.Cmd):
                     del obj_dict[obj_key]
                     storage.save()
 
-
     def help_quit(self):
         """
         Help message for the quit command
@@ -220,18 +281,6 @@ class HBNBCommand(cmd.Cmd):
         Help message for the all command
         """
         print("Prints all string representation of instances")
-
-    def help_update(self):
-        """
-        Help message for the update command
-        """
-        print("Update an instance based on the class name and id")
-
-    def emptyline(self):
-        """
-        Do nothing for empty line
-        """
-        pass
 
 
 if __name__ == '__main__':

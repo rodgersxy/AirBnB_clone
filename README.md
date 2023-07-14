@@ -15,7 +15,7 @@
 
 ## Usage and Execution
 
-$ ./console.py
+$ ./console.py   
 (hbnb) help
 
 Documented commands (type help <topic>):

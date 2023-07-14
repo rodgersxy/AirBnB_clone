@@ -26,3 +26,5 @@ EOF  help  quit
 (hbnb)
 (hbnb) quit
 $
+
+Gone camping! :tent: Be back soon.

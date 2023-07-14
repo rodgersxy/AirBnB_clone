@@ -20,12 +20,12 @@ $ ./console.py
 
 Documented commands (type help <topic>):
 ========================================
-EOF  help  quit
-
-(hbnb)
-(hbnb)
-(hbnb) quit
-$
+EOF  help  quit   
+   
+(hbnb)   
+(hbnb)   
+(hbnb) quit    
+$   
 -------------------------------------------------------------------------------------------
 But also in non-interactive mode: (like the Shell project in C)
 

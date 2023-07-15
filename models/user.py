@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 """
-A module that contains user class that inherits from 
+A module that contains user class that inherits from
 BaseModel
 """
 

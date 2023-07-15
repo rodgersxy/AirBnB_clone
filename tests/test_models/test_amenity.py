@@ -47,6 +47,33 @@ class TestAmenity(unittest.TestCase):
             self.amenity.id, self.amenity.__dict__)
         self.assertEqual(str(self.amenity), expected_output)
 
+    def test_attribute_assignment_value(self):
+        """
+        To test if name attribute can be assigned a value
+        """
+        self.amenity.name = "Internet"
+        self.assertEqual(self.amenity.name, "Internet")
+
+    def tearDown(self):
+        """clean up the instance"""
+        del self.amenity
+
+    def test_to_dict_method(self):
+        """
+        To test to_dict method of Amenity class to ensure that
+        produces correct dictionary representation
+        """
+        obj_dict = self.amenity.to_dict()
+        self.assertIsInstance(obj_dict, dict)
+        self.assertIn('id', obj_dict)
+        self.assertIsInstance(obj_dict['id'], str)
+        self.assertIn('created_at', obj_dict)
+        self.assertIsInstance(obj_dict['created_at'], str)
+        self.assertIn('updated_at', obj_dict)
+        self.assertIsInstance(obj_dict['updated_at'], str)
+        self.assertIn('__class__', obj_dict)
+        self.assertEqual(obj_dict['__class__'], 'Amenity')
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -6,6 +6,7 @@ Module for Command line Interpreter
 
 import cmd
 import json
+import re
 from models.base_model import BaseModel
 from models.state import State
 from models.city import City
@@ -27,7 +28,8 @@ class HBNBCommand(cmd.Cmd):
             "City": City,
             "Amenity": Amenity,
             "Place": Place,
-            "Review": Review
+            "Review": Review,
+            "User": User
     }
 
     attr_types = {
@@ -52,6 +54,25 @@ class HBNBCommand(cmd.Cmd):
         """Do nothing for empty line"""
         pass
 
+    def process_command(line):
+         match = re.search(r"^(\w*)\.(\w+)(?:\(([^)]*)\))?$", line)
+         if not match:
+             return line
+         classname = match.group(1)
+         method = match.group(2)
+         args = match.group(3)
+
+         if method == "update":
+             if args and args.startswith("{") and args.endswith("}"):
+                 process_update_dict(classname, args[1:-1])
+             else:
+                 process_update_attributes(classname, args)
+
+    def process_update_attributes(classname, attributes):
+        print(f"Update attributes for {classname}: {attributes}")
+
+
+
     def do_create(self, arg):
         """Create a new instance of BaseModel"""
         if not arg:
@@ -64,7 +85,7 @@ class HBNBCommand(cmd.Cmd):
         except NameError:
             print("** class doesn't exist **")
 
-    def update_dict(self, classname, uid, s_dict_):
+    def update_dict(self, classname, uid, s_dict):
         """
         Method for updated() with a dictionary
         """
@@ -103,7 +124,7 @@ class HBNBCommand(cmd.Cmd):
     def do_show(self, arg):
         """Print the string representation of an instance"""
         if not arg:
-            print("** cloass name missing **")
+            print("** class name missing **")
             return
         arg_list = arg.split()
         try:
@@ -190,7 +211,7 @@ class HBNBCommand(cmd.Cmd):
         if not arg:
             print("** class name string **")
             return
-        arg_list = arg.split()
+        args = arg.split()
         try:
             class_name = arg_list[0]
             instance_id = arg_list[1]
@@ -223,7 +244,7 @@ class HBNBCommand(cmd.Cmd):
         """
         Help message for the show command
         """
-        args = line .split()
+        args = arg.split()
         if not args:
             print("** class name missing **")
         else:
@@ -245,7 +266,7 @@ class HBNBCommand(cmd.Cmd):
         """
         Help mesage for the destroy command
         """
-        args = line.split()
+        args = arg.split()
         if not args:
             print("** class name missing **")
         else:

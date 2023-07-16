@@ -7,6 +7,7 @@ Module for Command line Interpreter
 import cmd
 import json
 import re
+from shlex import split
 from models.base_model import BaseModel
 from models.state import State
 from models.city import City
@@ -181,6 +182,9 @@ class HBNBCommand(cmd.Cmd):
                 if class_name not in storage.classes:
                     print("** class doesn't exist **")
                     return
+                obj_list = storage.classes[class_name].all()
+                print([str(obj) for obj in obj_list])
+
                 obj_list = [
                         str(obj) for obj in obj_dict.values() if type(
                             obj).__name__ == class_name]

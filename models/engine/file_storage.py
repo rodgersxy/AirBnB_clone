@@ -31,7 +31,8 @@ class FileStorage:
             "City": City,
             "Amenity": Amenity,
             "Place": Place,
-            "Review": Review
+            "Review": Review,
+            "User": User
     }
 
     def __init__(self):

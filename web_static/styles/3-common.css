@@ -1,0 +1,15 @@
+body
+{
+	margin: 0px;
+	padding: 0px;
+	font-size: 14px;
+	color: #484848;
+	font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+.center_footer
+{
+	top: 50%;
+	left: 50%;
+	position: absolute;
+	transform: translate(-50%, -50%);
+}

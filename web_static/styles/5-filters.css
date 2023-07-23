@@ -1,0 +1,21 @@
+.locations
+{
+	display: inline-block;
+	height: 100%;
+	width: 25%;
+}
+.filters
+{
+	background-color: white;
+	position: relative;
+	height: 70px;
+	width: 100%;
+	border: 1px solid #DDDDDD;
+	border-radius: 4px;
+}
+.amenities
+{
+	display: inline-block;
+	height: 100%;
+	width: 25%;
+}

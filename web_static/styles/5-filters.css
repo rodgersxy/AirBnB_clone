@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+.filters{
+	position: relative;
+	background-color: white;
+=======
 .locations
 {
 	display: inline-block;
@@ -8,11 +13,17 @@
 {
 	background-color: white;
 	position: relative;
+>>>>>>> 598970d5ff3d4ed126c1c69affe41aaf1cc50f47
 	height: 70px;
 	width: 100%;
 	border: 1px solid #DDDDDD;
 	border-radius: 4px;
 }
+<<<<<<< HEAD
+
+.filters button{
+	position: absolute;
+=======
 .amenities
 {
 	display: inline-block;
@@ -41,11 +52,46 @@
 .search_button
 {
 	display: inline-block;
+>>>>>>> 598970d5ff3d4ed126c1c69affe41aaf1cc50f47
 	font-size: 18px;
 	background-color: #FF5A5F;
 	color: #FFFFFF;
 	height: 48px;
 	width: 20%;
+<<<<<<< HEAD
+	border: none;
+	border-radius: 4px;
+}
+
+.filters button:hover{
+       opacity: 0.9;
+}
+
+.filters .amenities{
+	height: 100%;
+	width: 25%;
+	float: left;
+}
+
+.filters .locations{
+	height: 100%;
+	width: 25%;
+	border-right: 1px solid #DDDDDD;
+	float: left;
+}
+
+.filters .locations h3, .filters .amenities h3{
+	font-weight: 600;
+	padding-left: 40px;
+	margin: 10px 0;
+}
+
+.filters .locations h4, .filters .amenities h4{
+	font-weight: 400;
+	font-size: 14px;
+	padding-left: 40px;
+	margin: 10px 0;
+=======
 	position: absolute;
 	border-radius: 4px;
 	border: none;
@@ -57,4 +103,5 @@
 .search_button:hover
 {
 	opacity: 0.9;
+>>>>>>> 598970d5ff3d4ed126c1c69affe41aaf1cc50f47
 }

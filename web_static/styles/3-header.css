@@ -1,3 +1,13 @@
+<<<<<<< HEAD
+header{
+	background-color: white;
+	height: 70px;
+	width: 100%;
+	border-bottom: 1px #CCCCCC;
+	background-image: url("../images/logo.png");
+	background-position: 20px;
+	background-repeat: no-repeat;
+=======
 header
 {
 	background-color: white;
@@ -15,4 +25,5 @@ header .logo
 	position: relative;
 	top: 50%;
 	left: 20px;
+>>>>>>> 598970d5ff3d4ed126c1c69affe41aaf1cc50f47
 }

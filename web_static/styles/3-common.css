@@ -1,3 +1,11 @@
+<<<<<<< HEAD
+body{
+	margin:0px;
+	padding:0px;
+	color:#484848;
+	font-size:14px;
+	font-family:Cicular,"Helvetica Neue",Helvetica,Arial,sans-serif;
+=======
 body
 {
 	margin: 0px;
@@ -12,4 +20,5 @@ body
 	left: 50%;
 	position: absolute;
 	transform: translate(-50%, -50%);
+>>>>>>> 598970d5ff3d4ed126c1c69affe41aaf1cc50f47
 }

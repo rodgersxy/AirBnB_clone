@@ -1,4 +1,5 @@
-![Uploading f54486a431a05ea3477e337e0e953686d3c6ffd0.png…]()
+![hbnb_step1](https://github.com/rodgersxy/AirBnB_clone/assets/47353893/04b35a6f-e615-4475-b2e2-1c60461a77ab)
+
 # 0x01. AirBnB clone - Web static
 
 ## Resources  

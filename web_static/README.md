@@ -10,4 +10,8 @@ CSS SpeciFishity
 Introduction to HTML   
 CSS   
 MDN   
-center boxes  
+center boxes 
+
+## To validate all the files RUN
+
+./w3c_validator.py *.html styles/*.css

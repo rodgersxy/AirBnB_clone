@@ -23,29 +23,13 @@ class FileStorage:
     """
 
     __file_path = "file.json"
-    __objects = dict()
-
-    classes = {
-            "BaseModel": BaseModel,
-            "State": State,
-            "City": City,
-            "Amenity": Amenity,
-            "Place": Place,
-            "Review": Review,
-            "User": User
-    }
-
-    def __init__(self):
-        """
-        init method for FileStorage
-        """
-        pass
+    __objects = {}
 
     def all(self):
         """
         method all conatain all the stored objects
         """
-        return FileStorage.__objects
+        return self.__objects
 
     def new(self, obj):
         """
@@ -53,9 +37,7 @@ class FileStorage:
         converts it to dictionary using to_dict
         returns a unique key
         """
-        dictionary = obj.to_dict()
-        key = '{}.{}'.format(dictionary['__class__'], str(obj.id))
-        FileStorage.__objects[key] = obj
+        self.__objects.update({f"{obj.__class__.__name__}.{obj.id}": obj})
 
     def save(self):
         """
@@ -63,10 +45,10 @@ class FileStorage:
         __objects dictionary to a JSON file
         """
         dictionary = dict()
-        for k, v in FileStorage.__objects.items():
+        for key, value in self.__objects.items():
             dictionary[k] = v.to_dict()
-        with open(FileStorage.__file_path, 'w', encoding='utf-8') as file:
-            json.dump(dictionary, file)
+        with open(self.__file_path, 'w', encoding='utf-8') as file:
+            json.dump(dictionary, file, indent=2)
 
     def reload(self):
         """
@@ -74,9 +56,9 @@ class FileStorage:
         the data back into the __objects dictionary
         """
         try:
-            with open(FileStorage.__file_path, 'r', encoding='utf-8') as file:
-                json_load = json.load(file)
-            for k, v in json_load.items():
-                FileStorage.__objects[k] = BaseModel(**v)
+            with open(self.__file_path, 'r', encoding='utf-8') as fd:
+                dict_json = json.load(fd)
+                for key, value in dict_json.items():
+                    self.__objects[key] = eval(value['__class__'])(**value)
         except FileNotFoundError:
             pass
